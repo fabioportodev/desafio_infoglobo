@@ -5,6 +5,27 @@ import json
 
 
 @csrf_exempt
+def get_all_generos(request):
+
+    if request.method == 'GET':
+
+        generos = GeneroMusical.objects.all()
+        result = []
+        for g in generos:
+
+            result.append({'id': g.id,
+                           'genero': g.nome_genero})
+
+
+
+        result_json = json.dumps(result, ensure_ascii=False)
+        return HttpResponse(result_json, content_type='application/json')
+    return HttpResponse(json.dumps({
+        "Error": "Metodo {} não suportado.".format(request.method)
+    }, ensure_ascii=False), status=400, content_type='application/json')
+
+
+@csrf_exempt
 def post_genero_musical(request):
     response = {}
 
@@ -30,6 +51,10 @@ def post_genero_musical(request):
         return HttpResponse(json.dumps({
             "Success": "As informações foram adicionadas ao banco."
         }, ensure_ascii=False), status=201, content_type='application/json')
+
+
+
+
 
 
 

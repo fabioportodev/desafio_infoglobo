@@ -5,6 +5,40 @@ import json
 
 
 @csrf_exempt
+def get_all_albuns(request):
+
+    if request.method == 'GET':
+
+        albuns = Album.objects.all()
+        result = []
+        for a in albuns:
+
+            result.append({'id_album': a.id_album,
+                            'tipo_album': a.tipo_album,
+                            'nome_album': a.nome_album,
+                            'url_album': a.url_album,
+                            'url_art_sessenta': a.url_art_sessenta,
+                            'url_art_cem': a.url_art_cem,
+                            'preco_album': str(a.preco_album),
+                            'classificacao': a.classificacao,
+                            'n_faixas': a.n_faixas,
+                            'copyright': a.copyright,
+                            'pais': a.pais,
+                            'moeda': str(a.moeda),
+                            'lancamento': a.lancamento,
+                            'genero_musical': a.genero_musical.nome_genero,
+                            'artista': a.artista.nome_artista})
+
+
+
+        result_json = json.dumps(result, ensure_ascii=False)
+        return HttpResponse(result_json, content_type='application/json')
+    return HttpResponse(json.dumps({
+        "Error": "Metodo {} não suportado.".format(request.method)
+    }, ensure_ascii=False), status=400, content_type='application/json')
+
+
+@csrf_exempt
 def post_album(request):
     response = {}
 
