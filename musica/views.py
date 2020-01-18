@@ -113,6 +113,8 @@ def post_musica(request):
 
 @csrf_exempt
 def put_musica(request):
+    pass
+    '''
     response = {}
 
     if request.method == 'PUT':
@@ -171,7 +173,7 @@ def put_musica(request):
                                        artista=body['artista'],
                                        album=body['album']
                                        )
-        '''
+        
         musica = Musica.objects.filter(pk=body['id']).update(
             id_musica=True,
             nome_musica=True,
@@ -192,9 +194,11 @@ def put_musica(request):
             artista=True,
             album=True
         )
-        '''
+        
         musica.save()
 
         return HttpResponse(json.dumps({
             "Success": "As informações foram salvas no banco."
         }, ensure_ascii=False), status=201, content_type='application/json')
+    
+    '''
