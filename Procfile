@@ -1,0 +1,1 @@
+web: gunicorn infograficos.wsgi --log-file -

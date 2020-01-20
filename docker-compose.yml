@@ -1,0 +1,8 @@
+version: "2"
+
+services:
+  django-apache2:
+    build: .
+    container_name: desafio-infoglobo
+    ports:
+      - '8000:80'
