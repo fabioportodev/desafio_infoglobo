@@ -9,4 +9,4 @@ pytz==2019.3
 sqlparse==0.3.0
 static3==0.7.0
 gunicorn==20.0.4
-mysqlclient
+psycopg2

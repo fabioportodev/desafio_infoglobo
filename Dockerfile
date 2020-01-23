@@ -1,16 +1,28 @@
 FROM python:3.7
 
+# Define os argumentos
+ARG PORT
+ARG SECRET_KEY
+ARG DEBUG
+ARG DB_NAME
+ARG DB_USER
+ARG DB_PASSWORD
+ARG DB_HOST
+ARG DB_PORT
+
 # Atualiza o apt-get
-RUN apt-get update
-RUN apt-get -y install python3-pip
-RUN ln /usr/bin/python3 /usr/bin/python
-RUN ln /usr/bin/pip3 /usr/bin/pip
+#RUN apt-get update && apt-get -y install python3-pip
+#RUN ln /usr/bin/python3 /usr/bin/python && ln /usr/bin/pip3 /usr/bin/pip
 
 # Variáveis de ambiente
 ENV PORT=${PORT}
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DEBUG=False
+ENV DB_NAME=${DB_NAME}
+ENV DB_USER=${DB_USER}
+ENV DB_PASSWORD=${DB_PASSWORD}
+ENV DB_HOST=${DB_HOST}
+ENV DB_PORT=${DB_PORT}
 
 # Criar diretórios
 RUN mkdir /app
@@ -37,13 +49,11 @@ COPY --chown=python . /app
 # Muda o usuário
 USER python
 
-
-
-
 #Porta de exposição
-EXPOSE 80
+EXPOSE ${PORT}
 
-CMD ["apache2ctl", "-D", "FOREGROUND"]
+# Executar o arquivo principal do projeto quando o conteiner for iniciado
+CMD python manage.py runserver 0.0.0.0:${PORT}
 
 
 
