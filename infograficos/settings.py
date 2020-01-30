@@ -101,6 +101,15 @@ DATABASES = {
         'HOST': os.environ['DB_HOST'],
         'PORT': os.environ['DB_PORT'],
     }
+
+    #'default': {
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'NAME': 'postgres',
+        #'USER': 'postgres',
+        #'PASSWORD': 'infoglobo2020',
+        #'HOST': 'infoglobo.cqd14oqso3um.sa-east-1.rds.amazonaws.com',
+        #'PORT': '5432',
+    #}
 }
 
 
