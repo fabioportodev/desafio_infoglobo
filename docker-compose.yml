@@ -5,10 +5,10 @@ services:
     build:
       context: .
       args:
-        - DB_NAME=det83p2a7vaa38
-        - DB_USER=kzjpscfbrhnxps
-        - DB_PASSWORD=1cd2370abefbed2699ef0c4c49d83536247f0f28f613897e07089e8546cbd6d5
-        - DB_HOST=ec2-52-2-43-242.compute-1.amazonaws.com
+        - DB_NAME=postgres
+        - DB_USER=postgres
+        - DB_PASSWORD=infoglobo2020
+        - DB_HOST=infoglobo.cqd14oqso3um.sa-east-1.rds.amazonaws.com
         - DB_PORT=5432
     command: gunicorn infograficos.wsgi:application --bind 0.0.0.0:8000
     image: desafio-infoglobo
